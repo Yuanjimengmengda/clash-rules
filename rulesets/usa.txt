@@ -1,0 +1,67 @@
+payload:
+  # OpenAI / ChatGPT
+  - '+.openai.com'
+  - '+.chatgpt.com'
+  - '+.oaistatic.com'
+  - '+.oaiusercontent.com'
+  - '+.openaiapi-site.azureedge.net'
+  - '+.chat.openai.com'
+
+  # Anthropic / Claude / Claude Code
+  - '+.anthropic.com'
+  - '+.claude.ai'
+  - '+.console.anthropic.com'
+
+  # Google Gemini / Google AI
+  - '+.gemini.google.com'
+  - '+.generativeai.google'
+  - '+.aistudio.google.com'
+  - '+.ai.google.dev'
+  - '+.makersuite.google.com'
+  - '+.bard.google.com'
+
+  # xAI / Grok
+  - '+.grok.com'
+  - '+.x.ai'
+  - '+.accounts.x.ai'
+  - '+.api.x.ai'
+  - '+.console.x.ai'
+
+  # Perplexity
+  - '+.perplexity.ai'
+  - '+.pplx.ai'
+
+  # Cursor
+  - '+.cursor.com'
+  - '+.cursor.sh'
+  - '+.anysphere.co'
+
+  # GitHub Copilot
+  - '+.githubcopilot.com'
+  - '+.copilot.microsoft.com'
+
+  # Poe
+  - '+.poe.com'
+  - '+.poe.com.cdn.cloudflare.net'
+
+  # Mistral / Le Chat
+  - '+.mistral.ai'
+  - '+.chat.mistral.ai'
+
+  # Cohere
+  - '+.cohere.com'
+  - '+.cohere.ai'
+
+  # Hugging Face
+  - '+.huggingface.co'
+  - '+.hf.co'
+
+  # Replicate
+  - '+.replicate.com'
+  - '+.replicate.delivery'
+
+  # AI coding tools
+  - '+.codeium.com'
+  - '+.windsurf.com'
+  - '+.supermaven.com'
+  - '+.sourcegraph.com'

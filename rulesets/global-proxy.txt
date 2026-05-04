@@ -1,0 +1,112 @@
+payload:
+  # Personal frequently accessed sites
+  - '+.sukebei.nyaa.si'
+  - '+.nyaa.si'
+  - '+.nyaa.eu'
+  - '+.blog.reimu.net'
+  - '+.reimu.net'
+  - '+.51cg1.com'
+
+  # YouTube
+  - '+.youtube.com'
+  - '+.youtube-nocookie.com'
+  - '+.youtu.be'
+  - '+.yt.be'
+  - '+.ytimg.com'
+  - '+.googlevideo.com'
+  - '+.youtubei.googleapis.com'
+  - '+.youtube.googleapis.com'
+  - '+.youtubeeducation.com'
+  - '+.youtubegaming.com'
+  - '+.youtubekids.com'
+
+  # Instagram / Meta
+  - '+.instagram.com'
+  - '+.cdninstagram.com'
+  - '+.threads.net'
+  - '+.facebook.com'
+  - '+.facebook.net'
+  - '+.facebookmail.com'
+  - '+.fb.com'
+  - '+.fb.me'
+  - '+.fbcdn.com'
+  - '+.fbcdn.net'
+  - '+.fbsbx.com'
+  - '+.messenger.com'
+  - '+.m.me'
+  - '+.meta.com'
+
+  # LinkedIn
+  - '+.linkedin.com'
+  - '+.licdn.com'
+  - '+.linkedin.cn'
+
+  # Pixiv
+  - '+.pixiv.net'
+  - '+.pximg.net'
+  - '+.pixivision.net'
+  - '+.fanbox.cc'
+  - '+.booth.pm'
+
+  # Twitter / X
+  - '+.x.com'
+  - '+.twitter.com'
+  - '+.t.co'
+  - '+.twimg.com'
+
+  # Reddit
+  - '+.reddit.com'
+  - '+.redditmedia.com'
+  - '+.redd.it'
+  - '+.redditstatic.com'
+
+  # Discord
+  - '+.discord.com'
+  - '+.discordapp.com'
+  - '+.discord.gg'
+  - '+.discord.media'
+  - '+.discordcdn.com'
+
+  # Telegram web and media
+  - '+.telegram.org'
+  - '+.t.me'
+  - '+.tdesktop.com'
+  - '+.telegra.ph'
+
+  # Twitch
+  - '+.twitch.tv'
+  - '+.ttvnw.net'
+  - '+.jtvnw.net'
+  - '+.twitchcdn.net'
+
+  # Streaming and media
+  - '+.netflix.com'
+  - '+.netflix.net'
+  - '+.nflxext.com'
+  - '+.nflximg.com'
+  - '+.nflxvideo.net'
+  - '+.spotify.com'
+  - '+.scdn.co'
+  - '+.hulu.com'
+  - '+.disneyplus.com'
+  - '+.dssott.com'
+  - '+.max.com'
+  - '+.hbomax.com'
+  - '+.primevideo.com'
+
+  # Search / knowledge / developer sites often blocked or degraded
+  - '+.google.com'
+  - '+.googleapis.com'
+  - '+.gstatic.com'
+  - '+.ggpht.com'
+  - '+.googleusercontent.com'
+  - '+.wikipedia.org'
+  - '+.wikimedia.org'
+  - '+.medium.com'
+  - '+.medium.systems'
+  - '+.github.com'
+  - '+.githubusercontent.com'
+  - '+.githubassets.com'
+  - '+.github.io'
+  - '+.stackoverflow.com'
+  - '+.stackexchange.com'

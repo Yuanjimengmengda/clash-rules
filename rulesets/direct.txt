@@ -1,0 +1,4 @@
+payload:
+  # Domains that should always use DIRECT.
+  # Add entries like:
+  # - '+.example.cn'
