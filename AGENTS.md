@@ -39,7 +39,36 @@ Clash uses URLs like:
 https://cdn.jsdelivr.net/gh/Yuanjimengmengda/clash-rules@release/usa.txt
 ```
 
-Do not hand-edit the `release` branch.
+`cdn.jsdelivr.net` is jsDelivr. It reads files from GitHub and caches them on a CDN. GitHub is the source; jsDelivr is the delivery/cache layer. It is not a GitHub-provided automatic URL.
+
+Critical rule for agents: after editing `rulesets/*.txt`, ensure the same files are published to the `release` branch. If `release` is missing or stale, Clash rule providers will fail or silently fall through to later rules.
+
+Verify these URLs after publication:
+
+```text
+https://raw.githubusercontent.com/Yuanjimengmengda/clash-rules/release/usa.txt
+https://cdn.jsdelivr.net/gh/Yuanjimengmengda/clash-rules@release/usa.txt
+```
+
+Do not hand-edit the `release` branch in the main working tree. If GitHub Actions does not run, use a temporary directory and force-push only the generated `*.txt` files to `release`.
+
+Manual release publication:
+
+```powershell
+$publish = "$env:USERPROFILE\clash-rules-release-publish"
+Remove-Item -LiteralPath $publish -Recurse -Force -ErrorAction SilentlyContinue
+New-Item -ItemType Directory -Path $publish | Out-Null
+Copy-Item "$env:USERPROFILE\clash-rules\rulesets\*.txt" $publish
+Set-Location $publish
+git init
+git checkout -b release
+git config user.name "peter"
+git config user.email "peter@users.noreply.github.com"
+git add *.txt
+git commit -m "Publish rule sets"
+git remote add origin https://github.com/Yuanjimengmengda/clash-rules.git
+git push -f origin release
+```
 
 ## Clash Rule Order
 
