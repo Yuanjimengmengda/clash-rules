@@ -20,8 +20,8 @@ Current files:
 
 - `direct.txt`: always route to `DIRECT`.
 - `reject.txt`: always route to `REJECT`.
-- `usa.txt`: always route to `USA-PROXY`.
-- `global-proxy.txt`: always route to `GLOBAL-PROXY`.
+- `usa.txt`: always route to `PROXY-USA`.
+- `global-proxy.txt`: always route to `PROXY-GLOBAL`.
 
 For domain behavior, entries look like:
 
@@ -60,4 +60,4 @@ If there is a conflict, the earlier provider wins.
 
 - Prefer domain rules over IP rules for CDN-backed services.
 - Keep generated URLs stable; changing provider names in `Script.js` also requires changing matching `RULE-SET` lines.
-- Do not add subscription-specific policy names to rules. Use only normalized groups such as `GLOBAL-PROXY`, `USA-PROXY`, or built-ins like `DIRECT` and `REJECT`.
+- Do not add subscription-specific policy names to rules. Use only normalized groups such as `PROXY-GLOBAL`, `PROXY-USA`, or built-ins like `DIRECT` and `REJECT`.

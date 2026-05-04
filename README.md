@@ -48,17 +48,13 @@ https://raw.githubusercontent.com/Yuanjimengmengda/clash-rules/release/global-pr
 
 `clash-verge/Script.js` is a global profile enhancement script for Clash Verge Rev.
 
-It creates stable normalized proxy groups so rules do not break when switching subscriptions:
+It removes subscription-provided proxy groups from the generated config and creates a small set of stable normalized groups so rules do not break when switching subscriptions:
 
 ```text
-GLOBAL-PROXY
-AUTO-PROXY
-USA-PROXY
-HK-PROXY
-JP-PROXY
-SG-PROXY
-TW-PROXY
-KR-PROXY
+AUTO-GLOBAL
+AUTO-USA
+PROXY-GLOBAL
+PROXY-USA
 ```
 
 It also installs rule providers:
@@ -66,8 +62,8 @@ It also installs rule providers:
 ```text
 custom-direct         -> DIRECT
 custom-reject         -> REJECT
-custom-usa            -> USA-PROXY
-custom-global-proxy   -> GLOBAL-PROXY
+custom-usa            -> PROXY-USA
+custom-global-proxy   -> PROXY-GLOBAL
 Loyalsoldier baseline -> blacklist mode
 ```
 
@@ -87,14 +83,14 @@ Then in Clash Verge Rev:
 
 1. Enable profile script/global enhancement.
 2. Refresh the active subscription.
-3. Check that normalized groups like `GLOBAL-PROXY` and `USA-PROXY` appear.
+3. Check that normalized groups like `PROXY-GLOBAL` and `PROXY-USA` appear.
 
 ## Editing Rules
 
 Edit the files under `rulesets/`:
 
-- `usa.txt`: domains that must use `USA-PROXY`.
-- `global-proxy.txt`: domains that must use `GLOBAL-PROXY`.
+- `usa.txt`: domains that must use `PROXY-USA`.
+- `global-proxy.txt`: domains that must use `PROXY-GLOBAL`.
 - `direct.txt`: domains that must use `DIRECT`.
 - `reject.txt`: domains that must use `REJECT`.
 
