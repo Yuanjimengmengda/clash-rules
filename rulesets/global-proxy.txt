@@ -6,6 +6,7 @@ payload:
   - '+.blog.reimu.net'
   - '+.reimu.net'
   - '+.51cg1.com'
+  - '+.wgetcloud.org'
 
   # YouTube
   - '+.youtube.com'
