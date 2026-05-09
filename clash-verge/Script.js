@@ -57,6 +57,7 @@ function main(config, profileName) {
     "RULE-SET,custom-direct,DIRECT",
     "RULE-SET,custom-reject,REJECT",
     "RULE-SET,custom-usa,PROXY-USA",
+    "RULE-SET,custom-keyword-proxy,PROXY-GLOBAL",
     "RULE-SET,custom-global-proxy,PROXY-GLOBAL",
     "RULE-SET,applications,DIRECT",
     "DOMAIN,clash.razord.top,DIRECT",
@@ -111,9 +112,9 @@ function unique(items) {
 
 function customProviders() {
   const base = "https://cdn.jsdelivr.net/gh/Yuanjimengmengda/clash-rules@release";
-  const provider = (file) => ({
+  const provider = (file, behavior = "domain") => ({
     type: "http",
-    behavior: "domain",
+    behavior,
     url: `${base}/${file}.txt`,
     path: `./ruleset/custom/${file}.yaml`,
     interval: 86400,
@@ -123,6 +124,7 @@ function customProviders() {
     "custom-direct": provider("direct"),
     "custom-reject": provider("reject"),
     "custom-usa": provider("usa"),
+    "custom-keyword-proxy": provider("keyword-proxy", "classical"),
     "custom-global-proxy": provider("global-proxy"),
   };
 }

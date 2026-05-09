@@ -21,12 +21,19 @@ Current files:
 - `direct.txt`: always route to `DIRECT`.
 - `reject.txt`: always route to `REJECT`.
 - `usa.txt`: always route to `PROXY-USA`.
+- `keyword-proxy.txt`: always route keyword/classical matches to `PROXY-GLOBAL`.
 - `global-proxy.txt`: always route to `PROXY-GLOBAL`.
 
 For domain behavior, entries look like:
 
 ```yaml
   - '+.example.com'
+```
+
+`keyword-proxy.txt` uses `behavior: classical`; entries should be complete Clash rules, for example:
+
+```yaml
+  - DOMAIN-KEYWORD,example
 ```
 
 ## Publishing Model
@@ -78,6 +85,7 @@ Clash uses first-match-wins. The script intentionally orders custom rules before
 custom-direct
 custom-reject
 custom-usa
+custom-keyword-proxy
 custom-global-proxy
 Loyalsoldier baseline
 MATCH,DIRECT

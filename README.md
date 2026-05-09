@@ -16,6 +16,7 @@ It has two jobs:
 |-- rulesets/
 |   |-- direct.txt
 |   |-- global-proxy.txt
+|   |-- keyword-proxy.txt
 |   |-- reject.txt
 |   |-- usa.txt
 |   `-- README.md
@@ -34,6 +35,7 @@ Preferred CDN URLs:
 https://cdn.jsdelivr.net/gh/Yuanjimengmengda/clash-rules@release/direct.txt
 https://cdn.jsdelivr.net/gh/Yuanjimengmengda/clash-rules@release/reject.txt
 https://cdn.jsdelivr.net/gh/Yuanjimengmengda/clash-rules@release/usa.txt
+https://cdn.jsdelivr.net/gh/Yuanjimengmengda/clash-rules@release/keyword-proxy.txt
 https://cdn.jsdelivr.net/gh/Yuanjimengmengda/clash-rules@release/global-proxy.txt
 ```
 
@@ -43,6 +45,7 @@ Raw GitHub fallback URLs:
 https://raw.githubusercontent.com/Yuanjimengmengda/clash-rules/release/direct.txt
 https://raw.githubusercontent.com/Yuanjimengmengda/clash-rules/release/reject.txt
 https://raw.githubusercontent.com/Yuanjimengmengda/clash-rules/release/usa.txt
+https://raw.githubusercontent.com/Yuanjimengmengda/clash-rules/release/keyword-proxy.txt
 https://raw.githubusercontent.com/Yuanjimengmengda/clash-rules/release/global-proxy.txt
 ```
 
@@ -65,6 +68,7 @@ It also installs rule providers:
 custom-direct         -> DIRECT
 custom-reject         -> REJECT
 custom-usa            -> PROXY-USA
+custom-keyword-proxy  -> PROXY-GLOBAL
 custom-global-proxy   -> PROXY-GLOBAL
 Loyalsoldier baseline -> blacklist mode
 ```
@@ -92,6 +96,7 @@ Then in Clash Verge Rev:
 Edit the files under `rulesets/`:
 
 - `usa.txt`: domains that must use `PROXY-USA`.
+- `keyword-proxy.txt`: domain keyword rules that must use `PROXY-GLOBAL`.
 - `global-proxy.txt`: domains that must use `PROXY-GLOBAL`.
 - `direct.txt`: domains that must use `DIRECT`.
 - `reject.txt`: domains that must use `REJECT`.
@@ -105,6 +110,13 @@ payload:
 ```
 
 Use `'+.example.com'` for a domain and all subdomains.
+
+`keyword-proxy.txt` is a `classical` Clash rule-provider payload, so it can use full rule syntax:
+
+```yaml
+payload:
+  - DOMAIN-KEYWORD,example
+```
 
 ## Publish Changes
 

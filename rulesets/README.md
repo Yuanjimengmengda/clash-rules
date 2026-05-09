@@ -30,3 +30,10 @@ payload:
   - DOMAIN,api.example.com
   - DOMAIN-KEYWORD,example
 ```
+
+`keyword-proxy.txt` is wired as `behavior: classical` and is the right place for keyword rules such as:
+
+```yaml
+payload:
+  - DOMAIN-KEYWORD,ssrdog
+```
