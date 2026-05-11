@@ -21,6 +21,7 @@ Current files:
 - `direct.txt`: always route to `DIRECT`.
 - `reject.txt`: always route to `REJECT`.
 - `usa.txt`: always route to `PROXY-USA`.
+- `usa-keyword.txt`: always route keyword/classical matches to `PROXY-USA`.
 - `keyword-proxy.txt`: always route keyword/classical matches to `PROXY-GLOBAL`.
 - `global-proxy.txt`: always route to `PROXY-GLOBAL`.
 
@@ -85,6 +86,7 @@ Clash uses first-match-wins. The script intentionally orders custom rules before
 custom-direct
 custom-reject
 custom-usa
+custom-usa-keyword
 custom-keyword-proxy
 custom-global-proxy
 Loyalsoldier baseline

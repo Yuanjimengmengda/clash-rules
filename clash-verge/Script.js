@@ -57,6 +57,7 @@ function main(config, profileName) {
     "RULE-SET,custom-direct,DIRECT",
     "RULE-SET,custom-reject,REJECT",
     "RULE-SET,custom-usa,PROXY-USA",
+    "RULE-SET,custom-usa-keyword,PROXY-USA",
     "RULE-SET,custom-keyword-proxy,PROXY-GLOBAL",
     "RULE-SET,custom-global-proxy,PROXY-GLOBAL",
     "RULE-SET,applications,DIRECT",
@@ -124,6 +125,7 @@ function customProviders() {
     "custom-direct": provider("direct"),
     "custom-reject": provider("reject"),
     "custom-usa": provider("usa"),
+    "custom-usa-keyword": provider("usa-keyword", "classical"),
     "custom-keyword-proxy": provider("keyword-proxy", "classical"),
     "custom-global-proxy": provider("global-proxy"),
   };

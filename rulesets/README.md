@@ -37,3 +37,5 @@ payload:
 payload:
   - DOMAIN-KEYWORD,ssrdog
 ```
+
+`usa-keyword.txt` is also wired as `behavior: classical`, but routes to `PROXY-USA`.
