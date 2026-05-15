@@ -6,7 +6,20 @@ This repo is a personal Clash Verge Rev rules repository.
 
 - Edit `rulesets/*.txt` for domain routing changes.
 - Edit `clash-verge/Script.js` only for routing logic, normalized groups, or provider wiring.
+- Edit `clash-verge/config.yaml`, `clash-verge/dns_config.yaml`, and `clash-verge/verge.yaml` for shared Clash core, DNS, and Verge app settings.
 - Keep the installed script at `%APPDATA%\io.github.clash-verge-rev.clash-verge-rev\profiles\Script.js` in sync with `clash-verge/Script.js` when working on this PC.
+- Use `clash-verge/import-local.ps1` to import local Clash Verge config into the repo, and `clash-verge/install.ps1` to install repo config into `%APPDATA%\io.github.clash-verge-rev.clash-verge-rev`.
+
+## Synced Clash Verge Config
+
+Keep these files under `clash-verge/` suitable for sharing across machines:
+
+- `config.yaml`: Clash core base settings.
+- `dns_config.yaml`: Clash DNS settings.
+- `verge.yaml`: Clash Verge Rev app preferences.
+- `Script.js`: global profile enhancement script.
+
+Do not add generated or private state such as `profiles.yaml`, subscription YAML files under the local `profiles/` directory, `cache.db`, logs, `window_state.json`, `Country.mmdb`, `geoip.dat`, `geosite.dat`, or task scheduler XML.
 
 ## Rule Files
 

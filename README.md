@@ -5,14 +5,19 @@ This repository stores reusable Clash Verge Rev rule configuration.
 It has two jobs:
 
 - Publish personal rule-provider files from `rulesets/*.txt` to the `release` branch.
-- Store a reusable Clash Verge Rev global script at `clash-verge/Script.js`.
+- Store reusable Clash Verge Rev configuration under `clash-verge/`, including the global script, Clash base config, DNS config, and Verge app preferences.
 
 ## Repository Layout
 
 ```text
 .
 |-- clash-verge/
-|   `-- Script.js
+|   |-- Script.js
+|   |-- config.yaml
+|   |-- dns_config.yaml
+|   |-- import-local.ps1
+|   |-- install.ps1
+|   `-- verge.yaml
 |-- rulesets/
 |   |-- direct.txt
 |   |-- global-proxy.txt
@@ -75,14 +80,42 @@ Loyalsoldier baseline -> blacklist mode
 
 Rules are ordered intentionally. Clash uses the first matching rule, so custom rules run before upstream Loyalsoldier rules.
 
+## Clash Verge Config Sync
+
+`clash-verge/` also stores the Clash Verge Rev files that are useful to keep consistent across machines:
+
+- `config.yaml`: Clash core base settings such as ports, TUN defaults, controller, mode, LAN, IPv6, and logging.
+- `dns_config.yaml`: Clash DNS settings.
+- `verge.yaml`: Verge application preferences such as startup, tray, system proxy, language, core choice, and UI options.
+- `Script.js`: global profile enhancement script installed to the local `profiles/` directory.
+
+These files intentionally do not include `profiles.yaml`, subscription profile YAML files, logs, caches, Geo databases, `window_state.json`, or task scheduler XML. Those files are machine-specific, frequently generated, or may contain subscription/private state.
+
+To import the current local Clash Verge Rev settings into this repository:
+
+```powershell
+Set-Location "$env:USERPROFILE\clash-rules"
+.\clash-verge\import-local.ps1
+git diff -- clash-verge
+```
+
+To apply the repository version to the current Windows user:
+
+```powershell
+Set-Location "$env:USERPROFILE\clash-rules"
+.\clash-verge\install.ps1
+```
+
+Restart Clash Verge Rev, or reload the active profile, after installing config changes.
+
 ## Install On Another Windows PC
 
 Install Clash Verge Rev, then run:
 
 ```powershell
-Invoke-WebRequest `
-  -Uri "https://raw.githubusercontent.com/Yuanjimengmengda/clash-rules/master/clash-verge/Script.js" `
-  -OutFile "$env:APPDATA\io.github.clash-verge-rev.clash-verge-rev\profiles\Script.js"
+git clone https://github.com/Yuanjimengmengda/clash-rules.git "$env:USERPROFILE\clash-rules"
+Set-Location "$env:USERPROFILE\clash-rules"
+.\clash-verge\install.ps1
 ```
 
 Then in Clash Verge Rev:
@@ -123,7 +156,7 @@ payload:
 Rule files are only useful to Clash after they exist on the `release` branch. After changing `rulesets/*.txt`, always make sure the `release` branch has been published and the URLs below return the new content.
 
 ```powershell
-git add .github/workflows/run.yml README.md clash-verge rulesets
+git add .github/workflows/run.yml README.md AGENTS.md clash-verge rulesets
 git commit -m "Update personal Clash rules"
 git push origin master
 ```
