@@ -132,6 +132,19 @@ function FindProxyForURL(url, host) {
 
 It is still useful to keep the same domain in `rulesets/direct.txt`, but that alone may not affect Chrome if the active system PAC sends the request to Clash before Clash can make a direct/bypass decision. After editing the PAC, flush Chrome sockets at `chrome://net-internals/#sockets` or restart Chrome.
 
+SecoClient rewrites `seco_proxy.pac` whenever it reconnects, so manual edits are not persistent. This repository includes a user-level scheduled-task installer that patches the generated PAC and Windows proxy bypass list every minute:
+
+```powershell
+Set-Location "$env:USERPROFILE\clash-rules"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\clash-verge\install-secoclient-pac-task.ps1
+```
+
+The installed task is named:
+
+```text
+Patch SecoClient PAC for company domains
+```
+
 ## Install On Another Windows PC
 
 Install Clash Verge Rev, then run:
