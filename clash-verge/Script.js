@@ -54,6 +54,7 @@ function main(config, profileName) {
   };
 
   config.rules = [
+    "DOMAIN-SUFFIX,zhengrenquant.com,DIRECT",
     "RULE-SET,custom-direct,DIRECT",
     "RULE-SET,custom-reject,REJECT",
     "RULE-SET,custom-usa,PROXY-USA",
