@@ -108,6 +108,30 @@ Set-Location "$env:USERPROFILE\clash-rules"
 
 Restart Clash Verge Rev, or reload the active profile, after installing config changes.
 
+## SecoClient VPN And Chrome
+
+When SecoClient VPN is running together with Clash Verge system proxy or TUN mode, Chrome may follow SecoClient's PAC file before traffic reaches Clash rules. On this PC the PAC file is:
+
+```text
+%APPDATA%\SecoClient\seco_proxy.pac
+```
+
+If an internal company domain is reachable with direct tools but Chrome shows `ERR_CONNECTION_CLOSED`, check whether the PAC sends that domain to `PROXY 127.0.0.1:7890`. For example, `gitlab.zhengrenquant.com` resolves to a VPN-routed private IP and works with direct access, but fails when forced through Clash's local proxy.
+
+Fix this in SecoClient's PAC first, before spending time on Clash rule providers:
+
+```js
+function FindProxyForURL(url, host) {
+  if (dnsDomainIs(host, "zhengrenquant.com") || shExpMatch(host, "*.zhengrenquant.com")) {
+    return "DIRECT";
+  }
+
+  // Existing SecoClient PAC rules...
+}
+```
+
+It is still useful to keep the same domain in `rulesets/direct.txt`, but that alone may not affect Chrome if the active system PAC sends the request to Clash before Clash can make a direct/bypass decision. After editing the PAC, flush Chrome sockets at `chrome://net-internals/#sockets` or restart Chrome.
+
 ## Install On Another Windows PC
 
 Install Clash Verge Rev, then run:
@@ -185,8 +209,8 @@ Copy-Item "$env:USERPROFILE\clash-rules\rulesets\*.txt" $publish
 Set-Location $publish
 git init
 git checkout -b release
-git config user.name "peter"
-git config user.email "peter@users.noreply.github.com"
+git config user.name "yuehc"
+git config user.email "peter_rdfx@126.com"
 git add *.txt
 git commit -m "Publish rule sets"
 git remote add origin https://github.com/Yuanjimengmengda/clash-rules.git
