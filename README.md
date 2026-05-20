@@ -152,7 +152,7 @@ Set-Location "$env:USERPROFILE\clash-rules"
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\clash-verge\install-secoclient-wrapper.ps1
 ```
 
-The installer disables `ClientAutoBoot` in `%APPDATA%\SecoClient\sysconfig.ini`, creates `SecoClient patched.lnk` in the user's Startup folder and Desktop, then starts SecoClient through `start-secoclient-with-patch.ps1`. The wrapper only patches during the startup window, so it does not run continuously.
+The installer disables `ClientAutoBoot` in `%APPDATA%\SecoClient\sysconfig.ini`, removes the original `SecoClient` value from `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`, adds a `SecoClient patched` Run value, and creates a Desktop shortcut for manual starts. Both startup paths run SecoClient through `start-secoclient-with-patch.ps1`. The wrapper only patches during the startup window, so it does not run continuously.
 
 ## Install On Another Windows PC
 

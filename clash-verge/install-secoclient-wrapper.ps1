@@ -22,19 +22,23 @@ $startup = [Environment]::GetFolderPath("Startup")
 $desktop = [Environment]::GetFolderPath("Desktop")
 $target = "powershell.exe"
 $arguments = "-WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -File `"$wrapperPath`""
+$runKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
 
 $shell = New-Object -ComObject WScript.Shell
-foreach ($path in @(
-  (Join-Path $startup "SecoClient patched.lnk"),
-  (Join-Path $desktop "SecoClient patched.lnk")
-)) {
-  $shortcut = $shell.CreateShortcut($path)
-  $shortcut.TargetPath = $target
-  $shortcut.Arguments = $arguments
-  $shortcut.WorkingDirectory = Split-Path -Parent $wrapperPath
-  $shortcut.IconLocation = "C:\Program Files (x86)\SecoClient\SecoClient.exe,0"
-  $shortcut.Save()
-  Write-Host "Created shortcut: $path"
-}
+$startupShortcut = Join-Path $startup "SecoClient patched.lnk"
+Remove-Item -LiteralPath $startupShortcut -Force -ErrorAction SilentlyContinue
+
+$desktopShortcut = Join-Path $desktop "SecoClient patched.lnk"
+$shortcut = $shell.CreateShortcut($desktopShortcut)
+$shortcut.TargetPath = $target
+$shortcut.Arguments = $arguments
+$shortcut.WorkingDirectory = Split-Path -Parent $wrapperPath
+$shortcut.IconLocation = "C:\Program Files (x86)\SecoClient\SecoClient.exe,0"
+$shortcut.Save()
+Write-Host "Created shortcut: $desktopShortcut"
+
+Remove-ItemProperty -Path $runKey -Name "SecoClient" -ErrorAction SilentlyContinue
+Set-ItemProperty -Path $runKey -Name "SecoClient patched" -Value "$target $arguments"
+Write-Host "Replaced SecoClient Run startup with patched wrapper."
 
 & $wrapperPath
