@@ -132,7 +132,7 @@ function FindProxyForURL(url, host) {
 
 It is still useful to keep the same domain in `rulesets/direct.txt`, but that alone may not affect Chrome if the active system PAC sends the request to Clash before Clash can make a direct/bypass decision. After editing the PAC, flush Chrome sockets at `chrome://net-internals/#sockets` or restart Chrome.
 
-SecoClient rewrites `seco_proxy.pac` whenever it reconnects, so manual edits are not persistent. Prefer making Clash Verge's system proxy bypass persistent, then let SecoClient read that bypass when it generates PAC:
+SecoClient rewrites `seco_proxy.pac` whenever it reconnects, so manual edits are not persistent. Keeping the same bypass in Clash Verge is useful, but it may not survive SecoClient's startup order on every reboot:
 
 ```yaml
 use_default_bypass: true
@@ -144,6 +144,15 @@ After changing `verge.yaml`, restart Clash Verge Rev or toggle system proxy once
 ```text
 zhengrenquant.com;*.zhengrenquant.com
 ```
+
+If SecoClient still regenerates a PAC without the company-domain bypass, use the finite startup wrapper instead of SecoClient's built-in auto boot:
+
+```powershell
+Set-Location "$env:USERPROFILE\clash-rules"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\clash-verge\install-secoclient-wrapper.ps1
+```
+
+The installer disables `ClientAutoBoot` in `%APPDATA%\SecoClient\sysconfig.ini`, creates `SecoClient patched.lnk` in the user's Startup folder and Desktop, then starts SecoClient through `start-secoclient-with-patch.ps1`. The wrapper only patches during the startup window, so it does not run continuously.
 
 ## Install On Another Windows PC
 
