@@ -14,6 +14,7 @@ $files = @(
   @{ Source = "config.yaml"; Target = "config.yaml" },
   @{ Source = "dns_config.yaml"; Target = "dns_config.yaml" },
   @{ Source = "verge.yaml"; Target = "verge.yaml" },
+  @{ Source = "Merge.yaml"; Target = "profiles\Merge.yaml" },
   @{ Source = "Script.js"; Target = "profiles\Script.js" }
 )
 

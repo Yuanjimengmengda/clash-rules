@@ -12,6 +12,7 @@ It has two jobs:
 ```text
 .
 |-- clash-verge/
+|   |-- Merge.yaml
 |   |-- Script.js
 |   |-- config.yaml
 |   |-- dns_config.yaml
@@ -87,6 +88,7 @@ Rules are ordered intentionally. Clash uses the first matching rule, so custom r
 - `config.yaml`: Clash core base settings such as ports, TUN defaults, controller, mode, LAN, IPv6, and logging.
 - `dns_config.yaml`: Clash DNS settings.
 - `verge.yaml`: Verge application preferences such as startup, tray, system proxy, language, core choice, and UI options.
+- `Merge.yaml`: profile merge settings, including TUN route/interface exclusions for local VPNs.
 - `Script.js`: global profile enhancement script installed to the local `profiles/` directory.
 
 These files intentionally do not include `profiles.yaml`, subscription profile YAML files, logs, caches, Geo databases, `window_state.json`, or task scheduler XML. Those files are machine-specific, frequently generated, or may contain subscription/private state.

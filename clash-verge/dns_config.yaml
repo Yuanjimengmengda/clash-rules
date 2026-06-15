@@ -8,7 +8,7 @@ dns:
   direct-nameserver: []
   direct-nameserver-follow-policy: false
   enable: true
-  enhanced-mode: fake-ip
+  enhanced-mode: redir-host
   fake-ip-filter:
   - '*.lan'
   - '*.local'
