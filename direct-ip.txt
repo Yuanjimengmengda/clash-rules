@@ -1,5 +1,6 @@
 payload:
   # Work cloud hosts that should always bypass TUN/proxy routing.
+  - 60.191.32.230/32
   - 101.227.41.55/32
   - 101.227.41.237/32
   - 150.223.193.54/32
