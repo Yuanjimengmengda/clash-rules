@@ -4,6 +4,8 @@ function main(config, profileName) {
     "AUTO-GLOBAL",
     "PROXY-USA",
     "AUTO-USA",
+    "PROXY-SG",
+    "AUTO-SG",
     "GLOBAL-PROXY",
     "AUTO-PROXY",
     "USA-PROXY",
@@ -25,6 +27,11 @@ function main(config, profileName) {
       /\u7f8e\u56fd|\u7f8e\u570b/u,
       /\u{1F1FA}\u{1F1F8}/u,
     ]),
+    "PROXY-SG": pickByName(proxyNames, [
+      /\b(SG|Singapore)\b/i,
+      /\u65b0\u52a0\u5761|\u7345\u57ce/u,
+      /\u{1F1F8}\u{1F1EC}/u,
+    ]),
   };
 
   const normalizedGroups = [
@@ -44,6 +51,7 @@ function main(config, profileName) {
   ];
 
   addRegionGroups(normalizedGroups, "PROXY-USA", "AUTO-USA", regionNodes["PROXY-USA"]);
+  addRegionGroups(normalizedGroups, "PROXY-SG", "AUTO-SG", regionNodes["PROXY-SG"]);
 
   config["proxy-groups"].unshift(...normalizedGroups);
 
@@ -53,10 +61,24 @@ function main(config, profileName) {
     ...loyalsoldierProviders(),
   };
 
+  applyTunCompatibility(config);
+
   config.rules = [
+    "PROCESS-NAME,aTrustAgent.exe,DIRECT",
+    "PROCESS-NAME,aTrustXtunnel.exe,DIRECT",
     "DOMAIN-SUFFIX,zhengrenquant.com,DIRECT",
+    "DOMAIN-SUFFIX,azure.cn,DIRECT",
+    "DOMAIN-SUFFIX,gallerycdn.azure.cn,DIRECT",
+    "DOMAIN,openai.gallerycdn.azure.cn,DIRECT",
+    "DOMAIN-SUFFIX,vsassets.io,DIRECT",
+    "DOMAIN,openai.gallery.vsassets.io,DIRECT",
+    "DOMAIN,openai.gallerycdn.vsassets.io,DIRECT",
+    "IP-CIDR,60.191.32.230/32,DIRECT,no-resolve",
     "RULE-SET,custom-direct,DIRECT",
+    "RULE-SET,custom-direct-ip,DIRECT,no-resolve",
     "RULE-SET,custom-reject,REJECT",
+    "RULE-SET,custom-singapore,PROXY-SG",
+    "RULE-SET,custom-singapore-keyword,PROXY-SG",
     "RULE-SET,custom-usa,PROXY-USA",
     "RULE-SET,custom-usa-keyword,PROXY-USA",
     "RULE-SET,custom-keyword-proxy,PROXY-GLOBAL",
@@ -76,6 +98,21 @@ function main(config, profileName) {
   ];
 
   return config;
+}
+
+function applyTunCompatibility(config) {
+  config.ipv6 = false;
+  config.dns = {
+    ...(config.dns || {}),
+    ipv6: false,
+  };
+
+  const tun = { ...(config.tun || {}) };
+  tun["route-exclude-address"] = unique([
+    ...(Array.isArray(tun["route-exclude-address"]) ? tun["route-exclude-address"] : []),
+    "60.191.32.230/32",
+  ]);
+  config.tun = tun;
 }
 
 function addRegionGroups(groups, regionName, autoName, nodes) {
@@ -124,7 +161,10 @@ function customProviders() {
 
   return {
     "custom-direct": provider("direct"),
+    "custom-direct-ip": provider("direct-ip", "ipcidr"),
     "custom-reject": provider("reject"),
+    "custom-singapore": provider("singapore"),
+    "custom-singapore-keyword": provider("singapore-keyword", "classical"),
     "custom-usa": provider("usa"),
     "custom-usa-keyword": provider("usa-keyword", "classical"),
     "custom-keyword-proxy": provider("keyword-proxy", "classical"),

@@ -33,7 +33,10 @@ payload:
 Current files:
 
 - `direct.txt`: always route to `DIRECT`.
+- `direct-ip.txt`: always route listed public IP/CIDR ranges to `DIRECT`.
 - `reject.txt`: always route to `REJECT`.
+- `singapore.txt`: always route to `PROXY-SG`.
+- `singapore-keyword.txt`: always route keyword/classical matches to `PROXY-SG`.
 - `usa.txt`: always route to `PROXY-USA`.
 - `usa-keyword.txt`: always route keyword/classical matches to `PROXY-USA`.
 - `keyword-proxy.txt`: always route keyword/classical matches to `PROXY-GLOBAL`.
@@ -98,7 +101,10 @@ Clash uses first-match-wins. The script intentionally orders custom rules before
 
 ```text
 custom-direct
+custom-direct-ip
 custom-reject
+custom-singapore
+custom-singapore-keyword
 custom-usa
 custom-usa-keyword
 custom-keyword-proxy
@@ -113,4 +119,4 @@ If there is a conflict, the earlier provider wins.
 
 - Prefer domain rules over IP rules for CDN-backed services.
 - Keep generated URLs stable; changing provider names in `Script.js` also requires changing matching `RULE-SET` lines.
-- Do not add subscription-specific policy names to rules. Use only normalized groups such as `PROXY-GLOBAL`, `PROXY-USA`, or built-ins like `DIRECT` and `REJECT`.
+- Do not add subscription-specific policy names to rules. Use only normalized groups such as `PROXY-GLOBAL`, `PROXY-USA`, `PROXY-SG`, or built-ins like `DIRECT` and `REJECT`.

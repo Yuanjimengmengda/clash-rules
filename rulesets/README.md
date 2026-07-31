@@ -39,3 +39,14 @@ payload:
 ```
 
 `usa-keyword.txt` is also wired as `behavior: classical`, but routes to `PROXY-USA`.
+
+`singapore-keyword.txt` is wired as `behavior: classical`, but routes to `PROXY-SG`.
+
+For `behavior: ipcidr`, use CIDR entries:
+
+```yaml
+payload:
+  - 203.0.113.10/32
+```
+
+`direct-ip.txt` is wired as `behavior: ipcidr` and routes listed IP ranges to `DIRECT`.

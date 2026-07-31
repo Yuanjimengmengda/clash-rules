@@ -1,6 +1,4 @@
 payload:
-  - DOMAIN-KEYWORD,openai
-  - DOMAIN-KEYWORD,chatgpt
   - DOMAIN-KEYWORD,anthropic
   - DOMAIN-KEYWORD,athropic
   - DOMAIN-KEYWORD,claude

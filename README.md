@@ -21,9 +21,13 @@ It has two jobs:
 |   `-- verge.yaml
 |-- rulesets/
 |   |-- direct.txt
+|   |-- direct-ip.txt
 |   |-- global-proxy.txt
 |   |-- keyword-proxy.txt
 |   |-- reject.txt
+|   |-- singapore-keyword.txt
+|   |-- singapore.txt
+|   |-- usa-keyword.txt
 |   |-- usa.txt
 |   `-- README.md
 `-- .github/workflows/run.yml
@@ -39,8 +43,12 @@ Preferred CDN URLs:
 
 ```text
 https://cdn.jsdelivr.net/gh/Yuanjimengmengda/clash-rules@release/direct.txt
+https://cdn.jsdelivr.net/gh/Yuanjimengmengda/clash-rules@release/direct-ip.txt
 https://cdn.jsdelivr.net/gh/Yuanjimengmengda/clash-rules@release/reject.txt
+https://cdn.jsdelivr.net/gh/Yuanjimengmengda/clash-rules@release/singapore.txt
+https://cdn.jsdelivr.net/gh/Yuanjimengmengda/clash-rules@release/singapore-keyword.txt
 https://cdn.jsdelivr.net/gh/Yuanjimengmengda/clash-rules@release/usa.txt
+https://cdn.jsdelivr.net/gh/Yuanjimengmengda/clash-rules@release/usa-keyword.txt
 https://cdn.jsdelivr.net/gh/Yuanjimengmengda/clash-rules@release/keyword-proxy.txt
 https://cdn.jsdelivr.net/gh/Yuanjimengmengda/clash-rules@release/global-proxy.txt
 ```
@@ -49,8 +57,12 @@ Raw GitHub fallback URLs:
 
 ```text
 https://raw.githubusercontent.com/Yuanjimengmengda/clash-rules/release/direct.txt
+https://raw.githubusercontent.com/Yuanjimengmengda/clash-rules/release/direct-ip.txt
 https://raw.githubusercontent.com/Yuanjimengmengda/clash-rules/release/reject.txt
+https://raw.githubusercontent.com/Yuanjimengmengda/clash-rules/release/singapore.txt
+https://raw.githubusercontent.com/Yuanjimengmengda/clash-rules/release/singapore-keyword.txt
 https://raw.githubusercontent.com/Yuanjimengmengda/clash-rules/release/usa.txt
+https://raw.githubusercontent.com/Yuanjimengmengda/clash-rules/release/usa-keyword.txt
 https://raw.githubusercontent.com/Yuanjimengmengda/clash-rules/release/keyword-proxy.txt
 https://raw.githubusercontent.com/Yuanjimengmengda/clash-rules/release/global-proxy.txt
 ```
@@ -64,16 +76,22 @@ It removes subscription-provided proxy groups from the generated config and crea
 ```text
 AUTO-GLOBAL
 AUTO-USA
+AUTO-SG
 PROXY-GLOBAL
 PROXY-USA
+PROXY-SG
 ```
 
 It also installs rule providers:
 
 ```text
 custom-direct         -> DIRECT
+custom-direct-ip      -> DIRECT
 custom-reject         -> REJECT
+custom-singapore      -> PROXY-SG
+custom-singapore-keyword -> PROXY-SG
 custom-usa            -> PROXY-USA
+custom-usa-keyword    -> PROXY-USA
 custom-keyword-proxy  -> PROXY-GLOBAL
 custom-global-proxy   -> PROXY-GLOBAL
 Loyalsoldier baseline -> blacklist mode
@@ -177,9 +195,12 @@ Then in Clash Verge Rev:
 Edit the files under `rulesets/`:
 
 - `usa.txt`: domains that must use `PROXY-USA`.
+- `singapore.txt`: domains that must use `PROXY-SG`.
+- `singapore-keyword.txt`: domain keyword rules that must use `PROXY-SG`.
 - `keyword-proxy.txt`: domain keyword rules that must use `PROXY-GLOBAL`.
 - `global-proxy.txt`: domains that must use `PROXY-GLOBAL`.
 - `direct.txt`: domains that must use `DIRECT`.
+- `direct-ip.txt`: public IP/CIDR ranges that must use `DIRECT`.
 - `reject.txt`: domains that must use `REJECT`.
 
 Each file is a Clash rule-provider payload:
