@@ -104,6 +104,7 @@ function applyTunCompatibility(config) {
   config.ipv6 = false;
   config.dns = {
     ...(config.dns || {}),
+    "enhanced-mode": "redir-host",
     ipv6: false,
   };
 
@@ -111,6 +112,7 @@ function applyTunCompatibility(config) {
   tun["route-exclude-address"] = unique([
     ...(Array.isArray(tun["route-exclude-address"]) ? tun["route-exclude-address"] : []),
     "60.191.32.230/32",
+    "125.122.15.125/32",
   ]);
   config.tun = tun;
 }
