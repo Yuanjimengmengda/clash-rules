@@ -1,5 +1,6 @@
 payload:
   # Personal frequently accessed sites
+  - '+.huangguo.com'
   - '+.sukebei.nyaa.si'
   - '+.nyaa.si'
   - '+.nyaa.eu'
