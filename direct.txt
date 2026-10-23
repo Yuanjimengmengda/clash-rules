@@ -1,0 +1,11 @@
+payload:
+  # Domains that should always use DIRECT.
+  - '+.azure.cn'
+  - '+.gallerycdn.azure.cn'
+  - '+.openai.gallerycdn.azure.cn'
+  - '+.vsassets.io'
+  - '+.gallery.vsassets.io'
+  - '+.openai.gallery.vsassets.io'
+  - '+.gallerycdn.vsassets.io'
+  - '+.openai.gallerycdn.vsassets.io'
+  - '+.zhengrenquant.com'

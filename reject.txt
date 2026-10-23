@@ -1,0 +1,4 @@
+payload:
+  # Domains that should always use REJECT.
+  # Add entries like:
+  # - '+.ads.example.com'
