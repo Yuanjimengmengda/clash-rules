@@ -76,10 +76,10 @@ It removes subscription-provided proxy groups from the generated config and crea
 ```text
 AUTO-GLOBAL
 AUTO-USA
-AUTO-SG
+AUTO-OPENAI
 PROXY-GLOBAL
 PROXY-USA
-PROXY-SG
+PROXY-OPENAI
 ```
 
 It also installs rule providers:
@@ -88,8 +88,8 @@ It also installs rule providers:
 custom-direct         -> DIRECT
 custom-direct-ip      -> DIRECT
 custom-reject         -> REJECT
-custom-singapore      -> PROXY-SG
-custom-singapore-keyword -> PROXY-SG
+custom-singapore      -> PROXY-OPENAI
+custom-singapore-keyword -> PROXY-OPENAI
 custom-usa            -> PROXY-USA
 custom-usa-keyword    -> PROXY-USA
 custom-keyword-proxy  -> PROXY-GLOBAL
@@ -98,6 +98,8 @@ Loyalsoldier baseline -> blacklist mode
 ```
 
 Rules are ordered intentionally. Clash uses the first matching rule, so custom rules run before upstream Loyalsoldier rules.
+
+`AUTO-OPENAI` tests recognized Singapore and US nodes. `PROXY-OPENAI` defaults to that automatic group and also permits manual node, `PROXY-GLOBAL`, or `DIRECT` selection. A latency test does not guarantee OpenAI access.
 
 ## Clash Verge Config Sync
 
@@ -195,8 +197,8 @@ Then in Clash Verge Rev:
 Edit the files under `rulesets/`:
 
 - `usa.txt`: domains that must use `PROXY-USA`.
-- `singapore.txt`: domains that must use `PROXY-SG`.
-- `singapore-keyword.txt`: domain keyword rules that must use `PROXY-SG`.
+- `singapore.txt`: OpenAI domains routed to `PROXY-OPENAI`.
+- `singapore-keyword.txt`: OpenAI domain keyword rules routed to `PROXY-OPENAI`.
 - `keyword-proxy.txt`: domain keyword rules that must use `PROXY-GLOBAL`.
 - `global-proxy.txt`: domains that must use `PROXY-GLOBAL`.
 - `direct.txt`: domains that must use `DIRECT`.

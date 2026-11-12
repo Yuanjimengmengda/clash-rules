@@ -40,7 +40,7 @@ payload:
 
 `usa-keyword.txt` is also wired as `behavior: classical`, but routes to `PROXY-USA`.
 
-`singapore-keyword.txt` is wired as `behavior: classical`, but routes to `PROXY-SG`.
+`singapore-keyword.txt` is wired as `behavior: classical`, but routes to `PROXY-OPENAI`.
 
 For `behavior: ipcidr`, use CIDR entries:
 

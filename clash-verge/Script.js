@@ -4,8 +4,8 @@ function main(config, profileName) {
     "AUTO-GLOBAL",
     "PROXY-USA",
     "AUTO-USA",
-    "PROXY-SG",
-    "AUTO-SG",
+    "PROXY-OPENAI",
+    "AUTO-OPENAI",
     "GLOBAL-PROXY",
     "AUTO-PROXY",
     "USA-PROXY",
@@ -51,7 +51,10 @@ function main(config, profileName) {
   ];
 
   addRegionGroups(normalizedGroups, "PROXY-USA", "AUTO-USA", regionNodes["PROXY-USA"]);
-  addRegionGroups(normalizedGroups, "PROXY-SG", "AUTO-SG", regionNodes["PROXY-SG"]);
+  addRegionGroups(normalizedGroups, "PROXY-OPENAI", "AUTO-OPENAI", unique([
+    ...regionNodes["PROXY-SG"],
+    ...regionNodes["PROXY-USA"],
+  ]));
 
   config["proxy-groups"].unshift(...normalizedGroups);
 
@@ -77,8 +80,8 @@ function main(config, profileName) {
     "RULE-SET,custom-direct,DIRECT",
     "RULE-SET,custom-direct-ip,DIRECT,no-resolve",
     "RULE-SET,custom-reject,REJECT",
-    "RULE-SET,custom-singapore,PROXY-SG",
-    "RULE-SET,custom-singapore-keyword,PROXY-SG",
+    "RULE-SET,custom-singapore,PROXY-OPENAI",
+    "RULE-SET,custom-singapore-keyword,PROXY-OPENAI",
     "RULE-SET,custom-usa,PROXY-USA",
     "RULE-SET,custom-usa-keyword,PROXY-USA",
     "RULE-SET,custom-keyword-proxy,PROXY-GLOBAL",

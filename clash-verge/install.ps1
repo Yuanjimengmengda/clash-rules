@@ -1,5 +1,6 @@
 param(
-  [string]$TargetDir = "$env:APPDATA\io.github.clash-verge-rev.clash-verge-rev"
+  [string]$TargetDir = "$env:APPDATA\io.github.clash-verge-rev.clash-verge-rev",
+  [switch]$ScriptOnly
 )
 
 $ErrorActionPreference = "Stop"
@@ -17,6 +18,10 @@ $files = @(
   @{ Source = "Merge.yaml"; Target = "profiles\Merge.yaml" },
   @{ Source = "Script.js"; Target = "profiles\Script.js" }
 )
+
+if ($ScriptOnly) {
+  $files = @($files | Where-Object { $_.Source -eq "Script.js" })
+}
 
 foreach ($file in $files) {
   $source = Join-Path $SourceDir $file.Source
